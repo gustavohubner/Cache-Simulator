@@ -26,7 +26,7 @@ public class main {
      */
     public static void main(String[] args) {
         int nSets, bSize, assoc, flag_saida;
-        int end, resposta, end_conj, indice, tag;
+        int end, resposta;
         int stats[], cont;
         char subst;
         String nome_arquivo;
@@ -86,12 +86,4 @@ public class main {
         }
 
     }
-
-    public static int log2(int num) {
-        if (num == 0) {
-            return 0;
-        }
-        return 31 - Integer.numberOfLeadingZeros(num);
-    }
-
 }
