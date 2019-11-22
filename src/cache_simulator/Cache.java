@@ -2,8 +2,8 @@ package cache_simulator;
 
 public class Cache {
 
-    private int nSets, bSize, assoc;
-    private char subst;
+    private final int nSets, bSize, assoc;
+    private final char subst;
     private Conjunto conj[];
 
     public Cache(int nSets, int bSize, int assoc, char subst) {

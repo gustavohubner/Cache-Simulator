@@ -4,7 +4,7 @@ public class Conjunto {
 
     private Via vias[];
     private int acessos;
-    private char subst;
+    private final char subst;
 
     public Conjunto(int assoc, char subst) {
         this.vias = new Via[assoc];
