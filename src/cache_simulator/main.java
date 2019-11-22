@@ -53,7 +53,11 @@ public class main {
                 cont++;
             }
             bin.close();
-            System.err.println(cont + " " + (double) stats[0] / cont + " " + (double) stats[1] / cont + " " + (double) stats[1] / stats[1] + " " + (double) stats[3] / stats[1]);
+            int totalMiss = stats[1] + stats[2] + stats[3];
+            System.err.println(cont + " " + (double) stats[0] / cont + " "
+                    + (double) stats[1] / cont + " " 
+                    + (double) stats[1] / totalMiss + " " 
+                    + (double) stats[3] / totalMiss);
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
         } catch (IOException ex) {
