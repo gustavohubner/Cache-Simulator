@@ -2,8 +2,8 @@ package cache_simulator;
 
 public class Via {
 
-    int tag;
-    boolean val;
+    private int tag;
+    private boolean val;
 
     public Via() {
         this.tag = 0;

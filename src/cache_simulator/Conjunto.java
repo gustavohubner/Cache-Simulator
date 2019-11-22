@@ -2,9 +2,9 @@ package cache_simulator;
 
 public class Conjunto {
 
-    Via vias[];
-    int acessos;
-    char subst;
+    private Via vias[];
+    private int acessos;
+    private char subst;
 
     public Conjunto(int assoc, char subst) {
         this.vias = new Via[assoc];
@@ -14,13 +14,36 @@ public class Conjunto {
         }
     }
 
-    public int inserir(int end) {
+    public int inserir(int tag) {
         // @retorno:
         //0 = hit
         //1 = miss compulsorio;
         //2 = miss capacidade;
         //3 = miss conflito;
-        return 0;
+        for (Via via : vias) {
+            if (via.isVal()) {
+                if (via.getTag() == tag) {
+                    return 0; // VALIDO E MESMA TAG = hit
+                }
+            } else {
+                via.setTag(tag);
+                via.setVal(true);
+                return 1; // NAO VALIDO = compulsorio
+            }
+        }//SAIU DO LOOP -> USA POL. DE SUBST.
+        return substituir(tag);
     }
 
+    private int substituir(int tag) {
+        if (subst == 'R') {
+            //do something
+        }
+        if (subst == 'F') {
+            //do something
+        }
+        if (subst == 'L') {
+            //do something
+        }
+        return -1;//erro de tag de politica
+    }
 }

@@ -2,9 +2,9 @@ package cache_simulator;
 
 public class Cache {
 
-    int nSets, bSize, assoc;
-    char subst;
-    Conjunto conj[];
+    private int nSets, bSize, assoc;
+    private char subst;
+    private Conjunto conj[];
 
     public Cache(int nSets, int bSize, int assoc, char subst) {
         this.nSets = nSets;
@@ -24,6 +24,15 @@ public class Cache {
         //1 = miss compulsorio;
         //2 = miss capacidade;
         //3 = miss conflito;
-        return 0;
+
+        int end_conj = end / bSize;
+        int indice = end_conj % nSets;
+        int tag = end_conj / nSets;
+
+        System.out.println("Endereco: " + end + "\tindice: "
+                + indice + "\tend. conjunto: " + end_conj
+                + "\ttag: " + tag);
+        
+        return conj[indice].inserir(tag);
     }
 }
