@@ -29,9 +29,9 @@ public class Cache {
         int indice = end_conj % nSets;
         int tag = end_conj / nSets;
 
-        System.out.println("Endereco: " + end + "\tindice: "
-                + indice + "\tend. conjunto: " + end_conj
-                + "\ttag: " + tag);
+//        System.out.println("Endereco: " + end + "\tindice: "
+//                + indice + "\tend. conjunto: " + end_conj
+//                + "\ttag: " + tag);
         
         return conj[indice].inserir(tag);
     }

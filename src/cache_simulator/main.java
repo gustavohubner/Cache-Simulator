@@ -4,8 +4,6 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class main {
 
@@ -29,6 +27,7 @@ public class main {
     public static void main(String[] args) {
         int nSets, bSize, assoc, flag_saida;
         int end, resposta, end_conj, indice, tag;
+        int stats[], cont;
         char subst;
         String nome_arquivo;
         Cache cache;
@@ -40,16 +39,21 @@ public class main {
         flag_saida = Integer.parseInt(args[4]);
         nome_arquivo = args[5];
 
+        stats = new int[4];
+        cont = 0;
+
         cache = new Cache(nSets, bSize, assoc, subst);
 
         try {
-            DataInputStream bin = new DataInputStream(new FileInputStream(nome_arquivo));
+            DataInputStream bin = new DataInputStream(new FileInputStream("bin_10000.bin"));
             while (bin.available() > 0) {
                 end = bin.readInt();
                 resposta = cache.carregar(end);
-                
+                stats[resposta]++;
+                cont++;
             }
             bin.close();
+            System.err.println(cont + " " + (double) stats[0] / cont + " " + (double) stats[1] / cont + " " + (double) stats[1] / stats[1] + " " + (double) stats[3] / stats[1]);
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
         } catch (IOException ex) {
