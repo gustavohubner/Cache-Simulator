@@ -1,5 +1,7 @@
 package cache_simulator;
 
+import java.util.Random;
+
 public class Conjunto {
 
     private Via vias[];
@@ -18,8 +20,7 @@ public class Conjunto {
         // @retorno:
         //0 = hit
         //1 = miss compulsorio;
-        //2 = miss capacidade;
-        //3 = miss conflito;
+        //2 = miss capacidade/conflito
         for (Via via : vias) {
             if (via.isVal()) {
                 if (via.getTag() == tag) {
@@ -36,7 +37,12 @@ public class Conjunto {
 
     private int substituir(int tag) {
         if (subst == 'R') {
-            //do something
+            int nVia;
+            Random r = new Random();
+            nVia = r.nextInt(vias.length);
+            Via via = vias[nVia];
+            via.setTag(tag);
+            return 2;
         }
         if (subst == 'F') {
             //do something

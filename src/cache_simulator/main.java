@@ -49,14 +49,25 @@ public class main {
             while (bin.available() > 0) {
                 end = bin.readInt();
                 resposta = cache.carregar(end);
+                
+                if (resposta == 2) { //testa se o miss é conflito ou cap
+                    if (cache.isFull()) {
+                        resposta = 2; //miss de capacidade
+                    }
+                    else {
+                        resposta = 3; //miss de conflito
+                    }
+                }
+                
                 stats[resposta]++;
                 cont++;
             }
             bin.close();
             int totalMiss = stats[1] + stats[2] + stats[3];
             System.err.println(cont + " " + (double) stats[0] / cont + " "
-                    + (double) stats[1] / cont + " " 
+                    + (double) totalMiss / cont + " " 
                     + (double) stats[1] / totalMiss + " " 
+                    + (double) stats[2] / totalMiss + " " 
                     + (double) stats[3] / totalMiss);
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
