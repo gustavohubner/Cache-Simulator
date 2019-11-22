@@ -13,9 +13,14 @@ public class Conjunto {
             this.vias[i] = new Via();
         }
     }
-    
-    public int inserir(int end){
+
+    public int inserir(int end) {
+        // @retorno:
+        //0 = hit
+        //1 = miss compulsorio;
+        //2 = miss capacidade;
+        //3 = miss conflito;
         return 0;
     }
-    
+
 }
