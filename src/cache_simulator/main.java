@@ -63,12 +63,22 @@ public class main {
             }
             bin.close();
             int totalMiss = stats[1] + stats[2] + stats[3];
-            System.err.println(cont + " "
-                    + String.format("%.2f", (double) stats[0] / cont) + " "
-                    + String.format("%.2f", (double) totalMiss / cont) + " "
-                    + String.format("%.2f", (double) stats[1] / totalMiss) + " "
-                    + String.format("%.2f", (double) stats[2] / totalMiss) + " "
-                    + String.format("%.2f", (double) stats[3] / totalMiss));
+            if (flag_saida == 1) {
+                System.out.println(cont + " "
+                        + String.format("%.2f", (double) stats[0] / cont) + " "
+                        + String.format("%.2f", (double) totalMiss / cont) + " "
+                        + String.format("%.2f", (double) stats[1] / totalMiss) + " "
+                        + String.format("%.2f", (double) stats[2] / totalMiss) + " "
+                        + String.format("%.2f", (double) stats[3] / totalMiss));
+            } else if (flag_saida == 0) {
+                System.out.println("Nome do Arquivo:\t\t" + nome_arquivo + "\nTotal de acessos:\t\t" + cont
+                        + "\nTaxa de hit:\t\t\t" + String.format("%.2f", ((double) stats[0] / cont) * 100)
+                        + "%\nTaxa de miss:\t\t\t" + String.format("%.2f", ((double) totalMiss / cont) * 100)
+                        + "%\nTaxa de miss compulsório:\t" + String.format("%.2f", ((double) stats[1] / totalMiss) * 100)
+                        + "%\nTaxa de miss de capacidade:\t" + String.format("%.2f", ((double) stats[2] / totalMiss) * 100)
+                        + "%\nTaxa de miss de conflito:\t" + String.format("%.2f", ((double) stats[3] / totalMiss) * 100) + "%");
+            }
+
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
         } catch (IOException ex) {
