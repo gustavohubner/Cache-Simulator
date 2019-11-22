@@ -45,30 +45,30 @@ public class main {
         cache = new Cache(nSets, bSize, assoc, subst);
 
         try {
-            DataInputStream bin = new DataInputStream(new FileInputStream("bin_10000.bin"));
+            DataInputStream bin = new DataInputStream(new FileInputStream(nome_arquivo));
             while (bin.available() > 0) {
                 end = bin.readInt();
                 resposta = cache.carregar(end);
-                
+
                 if (resposta == 2) { //testa se o miss é conflito ou cap
                     if (cache.isFull()) {
                         resposta = 2; //miss de capacidade
-                    }
-                    else {
+                    } else {
                         resposta = 3; //miss de conflito
                     }
                 }
-                
+
                 stats[resposta]++;
                 cont++;
             }
             bin.close();
             int totalMiss = stats[1] + stats[2] + stats[3];
-            System.err.println(cont + " " + (double) stats[0] / cont + " "
-                    + (double) totalMiss / cont + " " 
-                    + (double) stats[1] / totalMiss + " " 
-                    + (double) stats[2] / totalMiss + " " 
-                    + (double) stats[3] / totalMiss);
+            System.err.println(cont + " "
+                    + String.format("%.2f", (double) stats[0] / cont) + " "
+                    + String.format("%.2f", (double) totalMiss / cont) + " "
+                    + String.format("%.2f", (double) stats[1] / totalMiss) + " "
+                    + String.format("%.2f", (double) stats[2] / totalMiss) + " "
+                    + String.format("%.2f", (double) stats[3] / totalMiss));
         } catch (FileNotFoundException ex) {
             System.err.println(ex);
         } catch (IOException ex) {
