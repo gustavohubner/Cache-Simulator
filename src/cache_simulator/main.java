@@ -51,9 +51,7 @@ public class main {
                 resposta = cache.carregar(end);
 
                 if (resposta == 2) { //testa se o miss é conflito ou cap
-                    if (cache.isFull()) {
-                        resposta = 2; //miss de capacidade
-                    } else {
+                    if (!cache.isFull()) {
                         resposta = 3; //miss de conflito
                     }
                 }
@@ -72,11 +70,16 @@ public class main {
                         + String.format("%.2f", (double) stats[3] / totalMiss));
             } else if (flag_saida == 0) {
                 System.out.println("Nome do Arquivo:\t\t" + nome_arquivo + "\nTotal de acessos:\t\t" + cont
+                        + "\nTotal de Hit:\t\t\t" + stats[0]
                         + "\nTaxa de hit:\t\t\t" + String.format("%.2f", ((double) stats[0] / cont) * 100)
-                        + "%\nTaxa de miss:\t\t\t" + String.format("%.2f", ((double) totalMiss / cont) * 100)
-                        + "%\nTaxa de miss compulsório:\t" + String.format("%.2f", ((double) stats[1] / totalMiss) * 100)
-                        + "%\nTaxa de miss de capacidade:\t" + String.format("%.2f", ((double) stats[2] / totalMiss) * 100)
-                        + "%\nTaxa de miss de conflito:\t" + String.format("%.2f", ((double) stats[3] / totalMiss) * 100) + "%");
+                        + "%\nTotal de Miss:\t\t\t" + totalMiss
+                        + "\nTaxa de miss:\t\t\t" + String.format("%.2f", ((double) totalMiss / cont) * 100)
+                        + "%\nTotal de Miss Compulsório:\t" + stats[1]
+                        + "\nTaxa de miss Compulsório:\t" + String.format("%.2f", ((double) stats[1] / totalMiss) * 100)
+                        + "%\nTotal de Miss de Capacidade:\t" + stats[2]
+                        + "\nTaxa de miss de capacidade:\t" + String.format("%.2f", ((double) stats[2] / totalMiss) * 100)
+                        + "%\nTotal de Miss de Conflito:\t" + stats[3]
+                        + "\nTaxa de miss de conflito:\t" + String.format("%.2f", ((double) stats[3] / totalMiss) * 100) + "%");
             }
 
         } catch (FileNotFoundException ex) {
